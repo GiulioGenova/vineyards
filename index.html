@@ -89,8 +89,10 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_vineyards_2_0() {
-            return {
+        function style_vineyards_2_0(feature) {
+            switch(String(feature.properties['stratocampionato'])) {
+                case 'Sottosuolo':
+                    return {
                 pane: 'pane_vineyards_2',
                 radius: 6.000000000000002,
                 opacity: 1,
@@ -101,8 +103,42 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(230,159,43,1.0)',
+                fillColor: 'rgba(20,222,212,1.0)',
                 interactive: true,
+            }
+                    break;
+                case 'Suolo':
+                    return {
+                pane: 'pane_vineyards_2',
+                radius: 6.000000000000002,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,81,240,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_vineyards_2',
+                radius: 6.000000000000002,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(220,217,112,1.0)',
+                interactive: true,
+            }
+                    break;
             }
         }
         map.createPane('pane_vineyards_2');
@@ -136,7 +172,7 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/vineyards_2.png" /> vineyards': layer_vineyards_2,"GoogleSatellite": layer_GoogleSatellite_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'vineyards<br /><table><tr><td style="text-align: center;"><img src="legend/vineyards_2_Sottosuolo0.png" /></td><td>Sottosuolo</td></tr><tr><td style="text-align: center;"><img src="legend/vineyards_2_Suolo1.png" /></td><td>Suolo</td></tr><tr><td style="text-align: center;"><img src="legend/vineyards_2_2.png" /></td><td></td></tr></table>': layer_vineyards_2,"GoogleSatellite": layer_GoogleSatellite_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
